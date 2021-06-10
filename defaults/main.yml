@@ -1,2 +1,4 @@
 ---
 # defaults file for ansible-role-snmpd/
+snmp_username: "username"
+snmp_password: "password"
