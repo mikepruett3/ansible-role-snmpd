@@ -25,7 +25,17 @@
     - ansible_os_family == 'RedHat'
     - ansible_distribution_major_version <= '6'
 
+- name: "Stop SNMP daemon"
+  ansible.builtin.service:
+    name: "{{ snmp_daemon }}"
+    state: stopped
+
 - name: "Create SNMPv3 User, using net-snmp-config"
   shell: net-snmp-create-v3-user -ro -x AES -a SHA -A {{ snmp_password | quote }} -X {{ snmp_password | quote }} {{ snmp_username | quote }}
   args:
     creates: /var/lib/net-snmp/snmpd.conf
+
+- name: "Start SNMP daemon"
+  ansible.builtin.service:
+    name: "{{ snmp_daemon }}"
+    state: started
