@@ -25,3 +25,6 @@
     - ansible_os_family == 'RedHat'
     - ansible_distribution_major_version <= '6'
   
+- name: "Create SNMPv3 User, using net-snmp-config"
+  shell: net-snmp-create-v3-user -ro -x AES -a SHA -A {{ snmp_password | quote }} -X {{ snmp_password | quote }} {{ snmp_username | quote }}
+  #ignore_errors: true
