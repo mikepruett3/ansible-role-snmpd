@@ -1,0 +1,6 @@
+---
+# vars file for ansible-role-snmpd/
+snmp_daemon: snmpd
+snmp_packages:
+  - net-snmp
+  - net-snmp-utils

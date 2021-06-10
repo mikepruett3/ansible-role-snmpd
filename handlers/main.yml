@@ -1,2 +1,6 @@
 ---
 # handlers file for ansible-role-snmpd/
+- name: "Restart SNMP daemon"
+  ansible.builtin.service:
+    name: "{{ snmp_daemon }}"
+    state: restarted
