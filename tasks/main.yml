@@ -14,7 +14,7 @@
     name: "{{ item }}"
     state: present
   when: item|string not in ansible_facts.packages
-  with_items: [snmp_packages]
+  with_items: "{{ snmp_packages }}"
 
 - name: "net-snmp-devel package, if missing"
   ansible.builtin.package:
