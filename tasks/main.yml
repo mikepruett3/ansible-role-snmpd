@@ -41,6 +41,18 @@
     state: absent
   when: rouser.rc != 0
 
+- name: "Delete existing SNMP v1/v2c configurations from SNMP daemon config file"
+  ansible.builtin.file:
+    path: "{{ snmp_config }}"
+    regex: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    backup: yes
+  with_items:
+    - regexp: "^rwcommunity"
+      line: '# \1'
+    - regexp: "^rocommunity"
+      line: '# \1'
+
 - name: "Create SNMPv3 User, using net-snmp-config (RHEL)"
   shell: net-snmp-create-v3-user -ro -x AES -a SHA -A {{ snmp_password | quote }} -X {{ snmp_password | quote }} {{ snmp_username | quote }}
   args:
