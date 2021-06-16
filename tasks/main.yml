@@ -48,9 +48,9 @@
     line: "{{ item.line }}"
     backup: yes
   with_items:
-    - regexp: '^rwcommunity'
+    - regexp: '^(rwcommunity.*)'
       line: '#\1'
-    - regexp: '^rocommunity'
+    - regexp: '^(rocommunity.*)'
       line: '#\1'
 
 - name: "Create SNMPv3 User, using net-snmp-config (RHEL)"
