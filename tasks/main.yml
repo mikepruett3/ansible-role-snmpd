@@ -30,7 +30,7 @@
     name: "{{ snmp_daemon }}"
     state: stopped
 
-- name: "Check if AllowGroups config exists in sshd_config"
+- name: "Check if SNMP v3 user config exists in snmp_config"
   shell: cat {{ snmp_config }} | grep rouser
   register: rouser
   ignore_errors: true
@@ -42,7 +42,7 @@
   when: rouser.rc != 0
 
 - name: "Delete existing SNMP v1/v2c configurations from SNMP daemon config file"
-  ansible.builtin.file:
+  ansible.builtin.lineinfile:
     path: "{{ snmp_config }}"
     regex: "{{ item.regexp }}"
     line: "{{ item.line }}"
