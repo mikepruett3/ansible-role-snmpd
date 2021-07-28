@@ -2,6 +2,7 @@
 # vars file for ansible-role-snmpd/
 snmp_daemon: snmpd
 snmp_config: /etc/snmp/snmpd.conf
+snmp_creates: /var/lib/snmp/snmpd.conf
 snmp_packages:
   - snmpd
   - libsnmp-dev
