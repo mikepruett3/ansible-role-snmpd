@@ -4,3 +4,4 @@ snmp_daemon: snmpd
 snmp_config: /etc/snmp/snmpd.conf
 snmp_packages:
   - snmpd
+  - libsnmp-dev
