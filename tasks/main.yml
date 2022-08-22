@@ -58,9 +58,9 @@
       replace: '#\1'
 
 - name: "Create SNMPv3 User, using net-snmp-config"
-  shell: net-snmp-create-v3-user -ro -x AES -a SHA -A {{ snmp_password | quote }} -X {{ snmp_password | quote }} {{ snmp_username | quote }}
-  args:
-    creates: "{{ snmp_creates }}"
+  ansible.builtin.shell: net-snmp-create-v3-user -ro -x AES -a SHA -A {{ snmp_password | quote }} -X {{ snmp_password | quote }} {{ snmp_username | quote }}
+  #args:
+  #  creates: "{{ snmp_creates }}"
   #when: ansible_os_family == 'RedHat'
 
 #- name: "Create SNMPv3 User, using net-snmp-config (Debian)"
